@@ -1,13 +1,13 @@
-.. image:: https://img.shields.io/pypi/v/breadcrumbs.svg
-    :target: https://pypi.python.org/pypi/breadcrumbs
+.. image:: https://img.shields.io/pypi/v/use-breadcrumbs.svg
+    :target: https://pypi.python.org/pypi/use-breadcrumbs
     :alt: Latest Version
 
-.. image:: https://img.shields.io/pypi/l/breadcrumbs.svg
-    :target: https://pypi.python.org/pypi/breadcrumbs
+.. image:: https://img.shields.io/pypi/l/use-breadcrumbs.svg
+    :target: https://pypi.python.org/pypi/use-breadcrumbs
     :alt: License
 
-.. image:: https://img.shields.io/pypi/pyversions/breadcrumbs.svg
-    :target: https://pypi.python.org/pypi/breadcrumbs
+.. image:: https://img.shields.io/pypi/pyversions/use-breadcrumbs.svg
+    :target: https://pypi.python.org/pypi/use-breadcrumbs
     :alt: Python Versions
 
 .. image:: https://github.com/hgrecco/breadcrumbs/workflows/CI/badge.svg?branch=main
