@@ -102,10 +102,9 @@ specific notes and teach this to functions.
     >>> @bc.aware(trail_param="obj")
     ... def func1(obj, x, y):
     ...     return (x + y) * obj.internal
-    >>> crumb = bc.Crumb("start")
-    >>> with bc.context(crumb):
-    ...     func1(1, 2)
-    >>> print(obj.trails)
+    >>> myobj = MyCoolClass()
+    >>> func1(myobj, 1, 2)
+    >>> print(myobj.trails)
     (Crumb('func1', info={'x': 1, 'y': 2}, extra={}))
 
 
