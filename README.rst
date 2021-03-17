@@ -72,10 +72,10 @@ You can also decorate a function to do some things for you automatically.
     >>> crumb = bc.Crumb("start")
     >>> with bc.context(crumb):
     ...     func1(1, 2)
-    >>> print(crumb.trails)
+    >>> print(crumb.trail)
     (Crumb('func1', info={'x': 1, y: '2'}, extra={}))
 
-So in trails you can see that `func1` has been called with certain parameters. You
+So in trail you can see that `func1` has been called with certain parameters. You
 can redact some parameters that might be memory intensive or pointless to store.
 
 .. code-block:: python
@@ -86,7 +86,7 @@ can redact some parameters that might be memory intensive or pointless to store.
     >>> crumb = bc.Crumb("start")
     >>> with bc.context(crumb):
     ...     func1(1, 2)
-    >>> print(crumb.trails)
+    >>> print(crumb.trail)
     (Crumb('func1', info={'x': 1}, extra={}))
 
 To redact more parameters, just pass an iterable.
@@ -104,7 +104,7 @@ specific notes and teach this to functions.
     ...     return (x + y) * obj.internal
     >>> myobj = MyCoolClass()
     >>> func1(myobj, 1, 2)
-    >>> print(myobj.trails)
+    >>> print(myobj.trail)
     (Crumb('func1', info={'x': 1, 'y': 2}, extra={}))
 
 

@@ -57,7 +57,7 @@ class TrailMixin:
     """Mixin class for annotated objects."""
 
     @property
-    def entries(self):
+    def trail(self):
         return getattr(self, "_trail", ())
 
     def put_crumb(self, cmb: Crumb):

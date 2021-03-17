@@ -20,8 +20,8 @@ def test_context():
 
     assert c.info == dict(value_info=41)
     assert c.extra == dict(value=42)
-    assert len(c.entries) == 1
-    assert c.entries[0].title == "_inner_c"
+    assert len(c.trail) == 1
+    assert c.trail[0].title == "_inner_c"
 
 
 def test_nested_context():
@@ -55,7 +55,7 @@ def test_func():
         return a + b
 
     assert sum(c, 1, 3) == 4
-    t = c.entries
+    t = c.trail
     assert len(t) == 1
     assert t[0].title == "test_func.<locals>.sum"
     assert t[0].info == dict(a=1, b=3)
@@ -72,7 +72,7 @@ def test_func_defaults():
         return a + b
 
     assert sum(c, 1) == 2
-    t = c.entries
+    t = c.trail
     assert len(t) == 1
     assert t[0].title == "test_func_defaults.<locals>.sum"
     assert t[0].info == dict(a=1, b=1)
@@ -89,7 +89,7 @@ def test_func_redact():
         return a + b
 
     assert sum(c, 1, 3) == 4
-    t = c.entries
+    t = c.trail
     assert len(t) == 1
     assert t[0].title == "test_func_redact.<locals>.sum"
     assert t[0].info == dict(a=bc.REDACTED, b=3)
@@ -106,7 +106,7 @@ def test_func_redact_str():
         return a + b
 
     assert sum(c, 1, 3) == 4
-    t = c.entries
+    t = c.trail
     assert len(t) == 1
     assert t[0].title == "test_func_redact_str.<locals>.sum"
     assert t[0].info == dict(a=bc.REDACTED, b=3)
