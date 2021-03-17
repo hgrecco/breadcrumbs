@@ -115,7 +115,7 @@ To install breadcrumbs, simply:
 
 .. code-block:: bash
 
-    $ pip install breadcrumbs
+    $ pip install use-breadcrumbs
 
 and then simply enjoy it!
 
