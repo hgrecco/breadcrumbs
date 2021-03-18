@@ -111,3 +111,22 @@ def test_func_redact_str():
     assert t[0].title == "test_func_redact_str.<locals>.sum"
     assert t[0].info == dict(a=bc.REDACTED, b=3)
     assert t[0].extra == dict(yes=True)
+
+
+def test_func_no_trail_param():
+
+    c = bc.Crumb("start")
+
+    @bc.aware()
+    def sum(a, b=1):
+        bc.update_extra(yes=True)
+        return a + b
+
+    with bc.context(c):
+        assert sum(1, 3) == 4
+
+    t = c.trail
+    assert len(t) == 1
+    assert t[0].title == "test_func_no_trail_param.<locals>.sum"
+    assert t[0].info == dict(a=1, b=3)
+    assert t[0].extra == dict(yes=True)
