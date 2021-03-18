@@ -17,6 +17,8 @@ import dataclasses
 import functools
 import inspect
 
+from . import namedobject
+
 try:
     from importlib.metadata import version
 except ImportError:
@@ -31,26 +33,7 @@ except Exception:  # pragma: no cover
     __version__ = "unknown"
 
 
-class NamedObject(object):
-    """A class to construct named sentinels."""
-
-    def __init__(self, name):
-        self.name = name
-
-    def __repr__(self):
-        return self.name
-
-    def __str__(self):
-        return self.name
-
-    def __hash__(self):
-        return id(self)
-
-    def __deepcopy__(self, memo):
-        return self
-
-
-REDACTED = NamedObject("REDACTED")
+REDACTED = namedobject.NamedObject("REDACTED")
 
 
 class TrailMixin:
@@ -83,10 +66,10 @@ _token = _crumb_ctx_var.set(RootCrumb)
 
 
 @contextlib.contextmanager
-def context(nte: Crumb):
+def context(cmb: Crumb):
     """Set a given Crumb as current active one."""
 
-    token = _crumb_ctx_var.set(nte)
+    token = _crumb_ctx_var.set(cmb)
     yield
     _crumb_ctx_var.reset(token)
 
