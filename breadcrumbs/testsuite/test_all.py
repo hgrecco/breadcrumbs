@@ -130,3 +130,36 @@ def test_func_no_trail_param():
     assert t[0].title == "test_func_no_trail_param.<locals>.sum"
     assert t[0].info == dict(a=1, b=3)
     assert t[0].extra == dict(yes=True)
+
+
+def test_trail_mixin():
+    class MyCoolClass(bc.TrailMixin):
+        internal = 10
+
+    @bc.aware(trail_param="obj")
+    def func1(obj, x, y):
+        return (x + y) * obj.internal
+
+    myobj = MyCoolClass()
+    assert not hasattr(myobj, "_trail")
+    assert func1(myobj, 1, 2) == (1 + 2) * 10
+    assert len(myobj.trail) == 1
+    assert myobj.trail[0].info == {"x": 1, "y": 2}
+    assert myobj.trail[0].extra == {}
+
+
+def test_trail_mixin_copy():
+    class MyCoolClass(bc.TrailMixin):
+        internal = 10
+
+    @bc.aware(trail_param="obj")
+    def func1(obj, x, y):
+        return (x + y) * obj.internal
+
+    myobj = MyCoolClass()
+    func1(myobj, 1, 2)
+    func1(myobj, 2, 3)
+
+    myobj2 = MyCoolClass()
+    myobj2.copy_trail_from(myobj)
+    assert myobj2.trail == myobj.trail

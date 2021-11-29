@@ -24,9 +24,9 @@ breadcrumbs: keep track of what is going on
 ===========================================
 
 This library started with a rather simple objective in mind:
-keep track of a sequence of transforming step.
+keep track of a sequence of transforming steps.
 
-It is extremely easy:
+It is extremely easy to use:
 
 .. code-block:: python
 
@@ -37,12 +37,13 @@ It is extremely easy:
     >>> print(crumb.info)
     {'value': 35, 'other_value': 70}
 
-A Crumb can has an `extra` and store dependent crumbs using the `put_crumb`
-methods.
+A Crumb can has three attributes: a name (here `Start`), and two dicts (`info` and `extra`)
+to store additional information. You can also store dependent crumbs using the `put_crumb`
+method.
 
-What is the big deal? You are just writing a dict! True, but the cool thing
-is that it works a little bit like logging and therefore you use it decoupled
-across you code:
+'What is the big deal?' you might ask, 'You are just writing a dict!'
+True, but the cool thing is that it works a little bit like logging and
+therefore you use it decoupled across you code:
 
 .. code-block:: python
 
@@ -96,8 +97,8 @@ specific notes and teach this to functions.
 
 .. code-block:: python
 
-    >>> class MyCoolClass(TrailMixin):
-    ...     # Here goes your cool
+    >>> class MyCoolClass(bc.TrailMixin):
+    ...     # Here goes your cool class
     ...     internal = 10
     >>> @bc.aware(trail_param="obj")
     ... def func1(obj, x, y):
