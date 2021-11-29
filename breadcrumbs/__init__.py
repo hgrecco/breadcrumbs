@@ -49,6 +49,10 @@ class TrailMixin:
         else:
             self._trail = (cmb,)
 
+    def copy_trail_from(self, other: TrailMixin):
+        for crumb in other.trail:
+            self.put_crumb(crumb)
+
 
 @dataclasses.dataclass
 class Crumb(TrailMixin):
